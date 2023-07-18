@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] float crashDelay = 1F;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.tag == "Head")
         {
-            SceneManager.LoadScene(0);
+            Invoke("ReloadScene", crashDelay);
         }
+    }
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
